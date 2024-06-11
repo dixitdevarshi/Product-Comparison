@@ -48,10 +48,10 @@ try:
             EC.presence_of_element_located((By.CLASS_NAME, "makers"))
         )
     
-    all_phone_links = search_results.find_elements(By.TAG_NAME, "a")
+    PhoneLinks = search_results.find_elements(By.TAG_NAME, "a")
 
     strong: List[WebElement] = []
-    for s in all_phone_links:
+    for s in PhoneLinks:
         temp = find_element_with_retries(s, By.TAG_NAME, "strong")
         strong.append(temp)
 
@@ -59,18 +59,16 @@ try:
 
     for st in strong:
         try:
-            span = find_element_with_retries(st, By.TAG_NAME, "span")
-            if span.text.replace(" ", "").replace("\n", "").casefold() == phone.replace(" ", "").casefold():
-                #print(f"Matching span text: {span.text}")
-                
-                for s in all_phone_links:
+            LastTag = find_element_with_retries(st, By.TAG_NAME, "span")
+            if LastTag.text.replace(" ", "").replace("\n", "").casefold() == phone.replace(" ", "").casefold():
+                for s in PhoneLinks:
                     try:
                         if st in s.find_elements(By.TAG_NAME, "strong"):
                             s.click()
                             break
                     except StaleElementReferenceException:
                         print("Stale element encountered while clicking, retrying...")
-                        all_phone_links = search_results.find_elements(By.TAG_NAME, "a")
+                        PhoneLinks = search_results.find_elements(By.TAG_NAME, "a")
                         break
         except TimeoutException:
             try:
@@ -85,39 +83,36 @@ try:
 except:
     pass
 
-def data_fetching(driver):
-    all_info = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "specs-list")))
-
+def specs_scrap(driver):
+    
+    fullbox = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "specs-list")))
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.TAG_NAME, "table")))
-
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "tbody")))
-
-    all_tables = all_info.find_elements(By.TAG_NAME, "table")
+    tables = fullbox.find_elements(By.TAG_NAME, "table")
 
     data = {}
 
-    for table in all_tables:
+    for table in tables:
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "tr")))
-        first_key = find_element_with_retries(table, By.TAG_NAME, "th").text
-        data[first_key] = {}
+        MainKey = find_element_with_retries(table, By.TAG_NAME, "th").text
+        data[MainKey] = {}
 
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "ttl")))
 
-        for inner_info in table.find_elements(By.TAG_NAME, "tr"):
+        for InsideTags in table.find_elements(By.TAG_NAME, "tr"):
             try:
-                title_key = find_element_with_retries(inner_info, By.CLASS_NAME, "ttl")
-                title = title_key.text
-                value_key = find_element_with_retries(inner_info, By.CLASS_NAME, "nfo")
-                value = value_key.text
-                data[first_key][title] = value
+                ttl = find_element_with_retries(InsideTags, By.CLASS_NAME, "ttl")
+                title = ttl.text
+                nfo = find_element_with_retries(InsideTags, By.CLASS_NAME, "nfo")
+                value = nfo.text
+                data[MainKey][title] = value
             except NoSuchElementException:
                 print("No ttl or nfo element found, skipping...")
             except StaleElementReferenceException:
                 print("Stale element encountered while processing, skipping...")
-
     return data
 
-data_fetching(driver)    
+specs_scrap(driver)    
 time.sleep(10)
 
 driver.quit() #exits
