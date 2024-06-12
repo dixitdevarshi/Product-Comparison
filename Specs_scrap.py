@@ -27,7 +27,6 @@ def find_element_with_retries(context, by, value, retries=10, wait_time=1):
         try:
             return context.find_element(by, value)
         except StaleElementReferenceException:
-            #print(f"Retry {attempt + 1}/{retries} for element {value}")
             time.sleep(wait_time)
             attempt += 1
     raise TimeoutException(f"Element not found after {retries} retries")
@@ -35,7 +34,6 @@ def find_element_with_retries(context, by, value, retries=10, wait_time=1):
 
 def getSpecs(phone_name):
     url = "https://www.gsmarena.com/"
-    # phone_name = 'iphone 13'
 
     try:
         driver.get(url) # Open the website
@@ -71,7 +69,6 @@ def getSpecs(phone_name):
                                 s.click()
                                 break
                         except StaleElementReferenceException:
-                            #print("Stale element encountered while clicking, retrying...")
                             PhoneLinks = search_results.find_elements(By.TAG_NAME, "a")
                             break
             except TimeoutException:
@@ -98,10 +95,6 @@ def getSpecs(phone_name):
                     data[MainKey][title] = value
                 except NoSuchElementException:
                     pass
-                    #print("No ttl or nfo element found, skipping...")
-                # except StaleElementReferenceException:
-                #     pass
-                    #print("Stale element encountered while processing, skipping...")
 
         specs = pd.DataFrame(data)
         file_name = phone_name + ".csv"
@@ -114,4 +107,4 @@ def getSpecs(phone_name):
     finally:
         driver.quit() #exits
 
-getSpecs("Apple iphone 14 pro")
+getSpecs("Apple iphone 13 pro")
