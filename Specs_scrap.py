@@ -97,19 +97,9 @@ def getSpecs(phone_name):
                 except NoSuchElementException:
                     pass
 
-        # specs = pd.DataFrame(data)
-        file_name = phone_name + ".json"
-        # json_obj = json.dumps(data,indent=3)
-        # print(json_obj)
-        # return json_obj
-        # with open(file_name,"w") as f:
-        #     json.dump(data,f,indent=4)
-
         with open(f"{phone_name.replace(' ', '_')}_specs.json", "w") as json_file:
             json.dump(data, json_file, indent=4)
         # return data
-
-        # return specs.to_csv(file_name)
         
     except:
         pass
@@ -117,4 +107,4 @@ def getSpecs(phone_name):
     finally:
         driver.quit() #exits
 
-getSpecs("Apple iphone 14")
+getSpecs("Apple iphone 15")
