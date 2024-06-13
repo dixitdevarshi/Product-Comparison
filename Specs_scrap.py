@@ -11,6 +11,7 @@ from selenium.webdriver.common.keys import Keys
 from typing import List
 import time
 import pandas as pd
+import json
 
 chromedriver_path = ChromeDriverManager().install() #install driver
 service = Service(executable_path=chromedriver_path)
@@ -96,10 +97,19 @@ def getSpecs(phone_name):
                 except NoSuchElementException:
                     pass
 
-        specs = pd.DataFrame(data)
-        file_name = phone_name + ".csv"
+        # specs = pd.DataFrame(data)
+        file_name = phone_name + ".json"
+        # json_obj = json.dumps(data,indent=3)
+        # print(json_obj)
+        # return json_obj
+        # with open(file_name,"w") as f:
+        #     json.dump(data,f,indent=4)
 
-        return specs.to_csv(file_name)
+        with open(f"{phone_name.replace(' ', '_')}_specs.json", "w") as json_file:
+            json.dump(data, json_file, indent=4)
+        # return data
+
+        # return specs.to_csv(file_name)
         
     except:
         pass
@@ -107,4 +117,4 @@ def getSpecs(phone_name):
     finally:
         driver.quit() #exits
 
-getSpecs("Apple iphone 13 pro")
+getSpecs("Apple iphone 14")
