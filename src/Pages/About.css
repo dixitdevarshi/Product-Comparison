@@ -1,0 +1,19 @@
+.about {
+    padding: var(--padding);
+    text-align: left;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+      padding: 0 10px;
+    }
+    
+    .navbar-logo {
+      font-size: 1.5rem;
+    }
+  
+    .nav-links {
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+  }

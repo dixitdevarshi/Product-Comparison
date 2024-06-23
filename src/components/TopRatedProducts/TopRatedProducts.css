@@ -1,0 +1,24 @@
+/* TopRatedProducts.css */
+.top-rated-products {
+    padding: 1rem;
+  }
+  
+  .top-rated-products ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .top-rated-products li {
+    padding: 0.5rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    .top-rated-products {
+      padding: 0.5rem;
+    }
+  
+    .top-rated-products li {
+      padding: 0.25rem 0;
+    }
+  }
+  

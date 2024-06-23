@@ -1,0 +1,83 @@
+/* App.css */ 
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-header nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.App-footer {
+  background-color: #282c34;
+  color: white;
+  padding: 1rem;
+}
+
+.search-bar {
+  margin: 20px 0;
+}
+
+.search-bar input {
+  padding: 0.5rem;
+  width: 300px;
+}
+
+.search-bar button {
+  padding: 0.5rem;
+}
+
+.top-rated-products {
+  margin: 20px 0;
+}
+
+.product-comparison {
+  margin: 20px 0;
+}
+
+.comparison-inputs {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.comparison-inputs input {
+  padding: 0.5rem;
+  width: 200px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  .navbar-logo {
+    font-size: 1.5rem;
+  }
+
+  .nav-links {
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+}

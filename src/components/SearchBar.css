@@ -1,0 +1,28 @@
+.search-bar {
+    padding: var(--padding);
+    text-align: center;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    margin-top: var(--padding);
+}
+
+.search-bar input {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+      padding: 0 10px;
+    }
+    
+    .navbar-logo {
+      font-size: 1.5rem;
+    }
+  
+    .nav-links {
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+  }

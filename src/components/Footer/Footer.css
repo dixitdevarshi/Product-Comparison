@@ -1,0 +1,17 @@
+/* Footer.css */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #254336;
+    color: white;
+    
+    width: 100%;
+    bottom: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      padding: 0.5rem;
+    }
+  }
+  

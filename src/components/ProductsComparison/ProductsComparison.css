@@ -1,0 +1,26 @@
+/* ProductsComparison.css */
+.products-comparison {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .compare-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .compare-inputs input {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  @media (max-width: 768px) {
+    .compare-inputs {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+  

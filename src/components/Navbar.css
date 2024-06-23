@@ -1,0 +1,135 @@
+/* Navbar.css */
+
+/* General Styles */
+.navbar {
+  background: #254336;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 1.5rem;
+  overflow: hidden; /* Ensure content does not overflow */
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  width: 100%;
+  flex-wrap: wrap; /* Allow items to wrap onto new lines */
+  padding: 0; /* Reset padding to 0 */
+  margin: 0; /* Reset margin to 0 */
+}
+
+.nav-item {
+  height: 80px;
+}
+
+.nav-links {
+  color: white;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem; /* Adjust padding as necessary */
+  height: 100%;
+  box-sizing: border-box; /* Ensure padding is included in width/height */
+}
+
+.nav-links:hover {
+  background-color: #6B8A7A;
+  border-radius: 4px;
+}
+
+.logo-img {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+}
+
+/* Media Queries */
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .navbar {
+    height: 70px;
+    font-size: 1.2rem;
+  }
+
+  .logo-img {
+    height: 60px;
+    width: 60px;
+  }
+
+  .nav-links {
+    padding: 0.5rem 0.75rem; /* Adjusted padding */
+  }
+}
+
+/* Small devices (phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .navbar {
+    height: 70px;
+    font-size: 1.2rem;
+  }
+
+  .logo-img {
+    height: 60px;
+    width: 60px;
+  }
+
+  .nav-links {
+    padding: 0.5rem 0.75rem; /* Adjusted padding */
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .navbar {
+    height: 80px;
+    font-size: 1.3rem;
+  }
+
+  .logo-img {
+    height: 70px;
+    width: 70px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .navbar {
+    height: 90px;
+    font-size: 1.5rem;
+  }
+
+  .logo-img {
+    height: 80px;
+    width: 80px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .navbar {
+    height: 100px;
+    font-size: 1.7rem;
+  }
+
+  .logo-img {
+    height: 90px;
+    width: 90px;
+  }
+}
+
+
+
