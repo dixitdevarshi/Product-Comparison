@@ -11,14 +11,15 @@ from selenium.webdriver.common.keys import Keys
 from typing import List
 import time
 
-#chromedriver_path = ChromeDriverManager().install() #install driver
-service = Service(executable_path="chromedriver.exe")
+chromedriver_path = ChromeDriverManager().install() #install driver
+service = Service(executable_path=chromedriver_path)
 
 options = Options()
 options.add_experimental_option("detach", True)
 
 driver = webdriver.Chrome(service=service, options=options)
 
+# for avoiding stale element error and timeout exception
 def find_element_with_retries(context, by, value, retries=10, wait_time=1):
     attempt = 0
     while attempt < retries:
@@ -29,11 +30,8 @@ def find_element_with_retries(context, by, value, retries=10, wait_time=1):
             attempt += 1
     raise TimeoutException(f"Element not found after {retries} retries")
 
-phone_url = ""
-
-def seach_phone(phone_name):
+def search_phone(phone_name):
     url = "https://www.gsmarena.com/"
-
     try:
         driver.get(url) # Open the website
 
@@ -79,8 +77,9 @@ def seach_phone(phone_name):
         pass
 
     finally:
+        time.sleep(2)
         driver.quit() #exit
         return phone_url
     
 
-seach_phone("apple iphone 14")
+search_phone("apple iphone 14")
