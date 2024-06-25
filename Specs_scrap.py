@@ -40,7 +40,7 @@ def find_element_with_retries(context, by, value, retries=10, wait_time=1):
 def check_for_too_many_requests():
     # Check for too many requests
     try:
-        too_many_requests_element = driver.find_element(By.XPATH, "//*[contains(text(), 'Too many requests')]")
+        too_many_requests_element = driver.find_element(By.XPATH, "//*[contains(text(), 'Too Many Requests')]")
         if too_many_requests_element:
             raise TooManyRequestsException("Error: Too many requests. Exiting the program.")
     except NoSuchElementException:
