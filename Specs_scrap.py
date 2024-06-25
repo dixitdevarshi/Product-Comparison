@@ -12,6 +12,11 @@ from typing import List
 import time
 import pandas as pd
 import json
+import sys
+
+class TooManyRequestsException(Exception):
+    #Exception raised for too many requests
+    pass
 
 chromedriver_path = ChromeDriverManager().install() #install driver
 service = Service(executable_path=chromedriver_path)
@@ -32,12 +37,24 @@ def find_element_with_retries(context, by, value, retries=10, wait_time=1):
             attempt += 1
     raise TimeoutException(f"Element not found after {retries} retries")
 
+def check_for_too_many_requests():
+    # Check for too many requests
+    try:
+        too_many_requests_element = driver.find_element(By.XPATH, "//*[contains(text(), 'Too many requests')]")
+        if too_many_requests_element:
+            raise TooManyRequestsException("Error: Too many requests. Exiting the program.")
+    except NoSuchElementException:
+        pass
+
 
 def getSpecs(phone_name):
     url = "https://www.gsmarena.com/"
 
     try:
         driver.get(url) # Open the website
+
+        # Check for "Too many requests" page
+        check_for_too_many_requests()
 
         # search for the phone_name
         search_box = WebDriverWait(driver, 10).until(
@@ -107,4 +124,4 @@ def getSpecs(phone_name):
     finally:
         driver.quit() #exits
 
-getSpecs("Apple iphone 15")
+getSpecs("Google pixel 8")
