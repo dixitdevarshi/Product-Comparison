@@ -36,16 +36,10 @@ def search_phone(phone_name):
         driver.get(url) # Open the website
 
         # search for the phone_name
-        search_box = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.NAME, "sSearch"))
-            )
-        
+        search_box = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "sSearch")))
         search_box.send_keys(phone_name)
         search_box.send_keys(Keys.RETURN)
-
-        search_results = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "makers"))
-            )
+        search_results = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "makers")))
         
         # check all result links
         PhoneLinks = search_results.find_elements(By.TAG_NAME, "a")
@@ -71,15 +65,12 @@ def search_phone(phone_name):
                             PhoneLinks = search_results.find_elements(By.TAG_NAME, "a")
                             break
             except TimeoutException:
-                pass
-    
+                pass   
     except:
         pass
-
     finally:
         time.sleep(2)
         driver.quit() #exit
         return phone_url
-    
-
+# for verifying the code
 search_phone("apple iphone 14")
