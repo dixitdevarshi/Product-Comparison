@@ -22,5 +22,5 @@ urlpatterns = [
     # path('load/', load_phones, name='load_phones'),
     path('scrape/', views.fetch_and_save_product_data, name='fetch_and_save_product_data'),
     path('admin/', admin.site.urls),
-    # path('api/',include('specs.urls')),
+    path('api/',include('specs.urls')),
 ]
