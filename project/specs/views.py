@@ -115,11 +115,18 @@ def fetch_and_save_product_data(request):
         return HttpResponse(f"An error occurred: {e}", status=500)
     
 
+###Data from database
 
+class PhoneList(ListAPIView):
+    queryset = PhoneName.objects.all()
+    serializer_class = PhoneNameSerializer
+    
+    
+    
+class Product(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
-# class PhoneList(ListAPIView):
-#     queryset = PhoneName.objects.all()
-#     serializer_class = PhoneNameSerializer
 
 
 
